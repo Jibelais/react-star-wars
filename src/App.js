@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import react, {useState, useEffect} from "react"
+import Card from "./components/Card";
+import './App.sass'
 
 function App() {
+
+  const [shipData, setShipData] = useState([])
+
+  useEffect(() => {
+    const resource = 'https://swapi.dev/api/starships'
+    const makeApiCall =  async () => {
+      const res = await fetch(resource); 
+      const json = await res.json(); 
+      setShipData(json)
+    }
+    makeApiCall()
+    
+    
+  }, [])
+
+const shipArr = shipData.results
+console.log(shipArr)
+
+
+const starShips = shipArr?.map((result, index)=> {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Card  shipNames = {result.name} 
+            model = {result.model}
+            manufacturer = {result.manufacturer}
+            capacity = {result.cargo_capacity}
+            consumables = {result.consumables}
+            
+            
+            />
+  )
+})
+
+  return (
+    <>
+    <div className="container">
+      {starShips}
     </div>
+    </>
   );
 }
 

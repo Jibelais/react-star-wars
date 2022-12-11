@@ -1,0 +1,14 @@
+body{
+    /* background-color: black; */
+    background-color: black;
+    background-image: url("background.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+}
+
+img {
+    width:400px;
+    margin: 50px 50px 50px 0px;
+
+}
