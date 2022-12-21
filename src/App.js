@@ -23,26 +23,27 @@ console.log(shipArr)
 
 
 const starShips = shipArr?.map((result, index)=> {
-
-  return (
-     <Card  shipNames = {result.name} 
-            model = {result.model}
-            manufacturer = {result.manufacturer}
-            capacity = {result.cargo_capacity}
-            consumables = {result.consumables}
-            
-            
-            />
+//I would just spread operator to get all the values in one line and don't forget the key
+  return  (
+    <Card
+      key={index}
+      {...result}
+    />
   )
 })
+  if (shipArr) {
+    return (
+      <>
+      <div className="container">
+        {starShips}
+      </div>
+      </>
+    );
+  } else {
+    //you can put a spinner here instead of text
+    return (<h1>Loading</h1>)
+}
 
-  return (
-    <>
-    <div className="container">
-      {starShips}
-    </div>
-    </>
-  );
 }
 
 export default App;
